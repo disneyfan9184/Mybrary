@@ -18,6 +18,7 @@ const db = mongoose.connection;
 db.on('error', error => console.log(error));
 db.once('open', () => console.log('Connected to MongoDB'));
 
+// SET MY VIEW ENGINE TO TO EJS
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
