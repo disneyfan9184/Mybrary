@@ -7,4 +7,5 @@ const authorSchema = new mongoose.Schema({
   }
 });
 
+// MONGOOSE WILL CREATE A COLLECTION OF LOWER CASE PLURAL VERSION OF 'Author' --> authors
 module.exports = mongoose.model('Author', authorSchema);
