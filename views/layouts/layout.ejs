@@ -9,12 +9,11 @@ THIS APPLICATION %>
     <title>Mybrary</title>
   </head>
   <body>
-    Before
     <br />
     <%# This is where we will put the content of everything inside of my
     application %> <%# Every ejs file will be imported into this body section %>
+    <%- include('../partials/header.ejs') %> <br />
     <%- body %>
     <br />
-    After
   </body>
 </html>

@@ -4,8 +4,12 @@
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const indexRouter = require('./routes/index');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+// SET MY ROUTES
+const indexRouter = require('./routes/index');
+const authorRouter = require('./routes/authors');
 
 const app = express();
 
@@ -25,13 +29,13 @@ app.set('views', __dirname + '/views');
 // Every single '.ejs' file will be put into the 'layout.ejs' file template
 app.set('layout', 'layouts/layout');
 app.use(expressLayouts);
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 // Where I will store css style sheets, images, js files, etc.
 app.use(express.static('public'));
 
-// This indexRouter variable will be set to the 'router' variable that is exported
-// from the 'index.js' file
 app.use('/', indexRouter);
+app.use('/authors', authorRouter);
 
 let PORT = process.env.PORT || 3000;
 
