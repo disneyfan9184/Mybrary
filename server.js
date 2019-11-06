@@ -1,6 +1,7 @@
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').parse();
-// }
+if (process.env.NODE_ENV !== 'production') {
+  const dotenv = require('dotenv');
+  dotenv.config();
+}
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
@@ -14,10 +15,10 @@ const authorRouter = require('./routes/authors');
 const app = express();
 
 // CONNECT TO MONGODB DATABASE
-// mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
-mongoose.connect('mongodb://localhost:27017/mybrary', {
-  useNewUrlParser: true
-});
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost:27017/mybrary', {
+// useNewUrlParser: true
+// });
 const db = mongoose.connection;
 db.on('error', error => console.log(error));
 db.once('open', () => console.log('Connected to MongoDB'));
