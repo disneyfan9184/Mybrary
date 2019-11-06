@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 // SET MY ROUTES
 const indexRouter = require('./routes/index');
 const authorRouter = require('./routes/authors');
+const bookRouter = require('./routes/books');
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(express.static('public'));
 
 app.use('/', indexRouter);
 app.use('/authors', authorRouter);
+app.use('/books', bookRouter);
 
 let PORT = process.env.PORT || 3000;
 
