@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const path = require('path');
-const coverImageBasePath = 'uploads/bookCovers';
+// const path = require('path');
+// const coverImageBasePath = 'uploads/bookCovers';
 
 const bookSchema = new mongoose.Schema({
   title: {
@@ -24,6 +24,10 @@ const bookSchema = new mongoose.Schema({
     default: Date.now
   },
   coverImage: {
+    type: Buffer,
+    required: true
+  },
+  coverImageType: {
     type: String,
     required: true
   },
@@ -37,11 +41,13 @@ const bookSchema = new mongoose.Schema({
 
 // CREATE A VIRTUAL PROPERTY
 bookSchema.virtual('coverImagePath').get(function() {
-  if (this.coverImage != null) {
-    return path.join('/', coverImageBasePath, this.coverImage);
+  if (this.coverImage != null && this.coverImageType != null) {
+    return `data:${
+      this.coverImageType
+    }; charset=utf-8;base64, ${this.coverImage.toString('base64')}`;
   }
 });
 
 // MONGOOSE WILL CREATE A COLLECTION OF LOWER CASE PLURAL VERSION OF 'Book' --> books
 module.exports = mongoose.model('Book', bookSchema);
-module.exports.coverImageBasePath = coverImageBasePath;
+// module.exports.coverImageBasePath = coverImageBasePath;
