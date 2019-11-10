@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const path = require('path');
+const coverImageBasePath = 'uploads/bookCovers';
 
 const bookSchema = new mongoose.Schema({
   title: {
@@ -33,5 +35,13 @@ const bookSchema = new mongoose.Schema({
   }
 });
 
+// CREATE A VIRTUAL PROPERTY
+bookSchema.virtual('coverImagePath').get(function() {
+  if (this.coverImage != null) {
+    return path.join('/', coverImageBasePath, this.coverImage);
+  }
+});
+
 // MONGOOSE WILL CREATE A COLLECTION OF LOWER CASE PLURAL VERSION OF 'Book' --> books
 module.exports = mongoose.model('Book', bookSchema);
+module.exports.coverImageBasePath = coverImageBasePath;
