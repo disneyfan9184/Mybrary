@@ -40,4 +40,29 @@ router.post('/', async (req, res) => {
     });
   }
 });
+
+// GET A SPECIFIC AUTHOR BY ID - 'authors/id'
+router.get('/:id', (req, res) => {
+  res.send('Show Author ' + req.params.id);
+});
+
+// EDIT AUTHOR ROUTE
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const author = await Author.findById(req.params.id);
+    res.render('authors/edit', { author: author });
+  } catch {
+    res.redirect('/authors');
+  }
+});
+
+// UPDATE AUTHOR ROUTE
+router.put('/:id', (req, res) => {
+  res.send('Update Author ' + req.params.id);
+});
+
+// DELETE AUTHOR ROUTE
+router.delete('/:id', (req, res) => {
+  res.send('Delete Author ' + req.params.id);
+});
 module.exports = router;

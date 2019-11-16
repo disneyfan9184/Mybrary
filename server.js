@@ -6,6 +6,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 // SET MY ROUTES
 const indexRouter = require('./routes/index');
@@ -30,6 +31,7 @@ app.set('views', __dirname + '/views');
 // Every single '.ejs' file will be put into the 'layout.ejs' file template
 app.set('layout', 'layouts/layout');
 app.use(expressLayouts);
+app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 // Where I will store css style sheets, images, js files, etc.
