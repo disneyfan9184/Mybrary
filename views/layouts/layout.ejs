@@ -33,15 +33,22 @@ THIS APPLICATION %>
     <!-- CUSTOM JAVASCRIPTS -->
     <script defer src="/javascripts/fileUpload.js"></script>
 
+    <!-- CUSTOM STYLESHEETS -->
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+
     <title>Mybrary</title>
   </head>
   <body>
-    <br />
-    <%# This is where we will put the content of everything inside of my
-    application %> <%# Every ejs file will be imported into this body section %>
-    <%- include('../partials/header.ejs') %> <br />
-    <%- include('../partials/errorMessage.ejs') %> <br />
-    <%- body %>
-    <br />
+    <div class="container">
+      <br />
+      <!-- This is where we will put the content of everything inside of my application -->
+      <!-- Every ejs file will be imported into this body section-->
+      <%- include('../partials/header.ejs') %> <br />
+      <div class="inner-container">
+        <%- include('../partials/errorMessage.ejs') %> <br />
+        <%- body %>
+        <br />
+      </div>
+    </div>
   </body>
 </html>
