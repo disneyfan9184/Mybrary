@@ -2,6 +2,7 @@
 @import 'shared/variables.css';
 @import 'shared/headers.css';
 @import 'shared/buttons.css';
+@import 'shared/form.css';
 
 /* CSS VARIABLES/CUSTOM PROPERTIES */
 :root {
